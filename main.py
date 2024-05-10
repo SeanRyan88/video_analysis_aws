@@ -86,7 +86,7 @@ def process_video_file(s3_bucket: str, s3_key: str):
         print("Local File Name = ", local_filename)
 
         # TEMP TESTING
-        AnalysisArray = AnalysePose(local_filename)
+        AnalysisArray = video_processing_python_files.vp_analysePose.AnalysePose(local_filename)
 
         # Save 3 images
         # SaveImage(AnalysisArray[0], filename="image_1.jpg")
