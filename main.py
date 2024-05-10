@@ -1,6 +1,9 @@
+#Standard Python Lib
 import json
 import os
 import boto3
+
+# Installed via requirements.txt
 from botocore.exceptions import ClientError
 import numpy as np
 import cv2
