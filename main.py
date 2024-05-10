@@ -6,7 +6,7 @@ import boto3
 # Installed via requirements.txt
 from botocore.exceptions import ClientError
 import numpy as np
-# import opencv-python
+import opencv-python
 import mediapipe
 import time
 from typing import List, Tuple
