@@ -14,7 +14,7 @@ from urllib.parse import unquote_plus
 from dotenv import load_dotenv
 
 import cv2
-import mediapipe
+import mediapipe as mp
 
 # Local items to include
 import video_processing_python_files.vp_gifCreater
