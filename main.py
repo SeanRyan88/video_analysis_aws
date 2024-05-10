@@ -3,12 +3,18 @@ import os
 import boto3
 from botocore.exceptions import ClientError
 import numpy as np
-# import cv2
+import cv2
 import mediapipe
 import time
 from typing import List, Tuple
 from urllib.parse import unquote_plus
 from dotenv import load_dotenv
+
+# Local items to include
+import vp_gifCreater
+import vp_calculateAngle
+import vp_analysePose
+import vp_runAnalysis
 
 
 def process_messages(messages: List[dict], sqs_client: boto3.client):
@@ -67,17 +73,24 @@ def process_video_file(s3_bucket: str, s3_key: str):
 
     try:
         # Placeholder for actual video processing module
-        results_text, gif1, gif2 = video_processing_module.process_video(local_filename)
+
+        results_text, images = vp_runAnalysis.process_video(local_filename)
+
+        # Converts Images into gif
+        # create_gif(image_paths, output_path, duration = 500)
+        results_gif = vp_gifCreater.create_gif(images)
+        
         #results_text, gif1, gif2 = 'dummy results text', '/tmp/dummy1.gif', '/tmp/dummy2.gif'
         print(f"Processed {s3_key} successfully, results ready to upload.")
 
         # Upload results back to another S3 bucket
-        upload_results(S3_BUCKET_NAME, s3_key, results_text, gif1, gif2)
+        upload_results(S3_BUCKET_NAME, s3_key, results_gif, results_text)
     except Exception as e:
         print(f"Error processing/uploading results for {s3_key}: {e}")
     finally:
+        
         # Clean up: Delete the local video file and any generated GIFs
-        cleanup_files([local_filename, gif1, gif2])
+        cleanup_files([local_filename, results_text, results_gif])
 
 def cleanup_files(files):
     """ Removes specified files from the filesystem if they exist. """
