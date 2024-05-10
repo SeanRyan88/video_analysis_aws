@@ -2,8 +2,8 @@ boto3==1.34.101 #Successful Install
 botocore==1.34.101
 numpy==1.26.4
 mediapipe==0.10.14
-Pillow==9.3.0  
-opencv-python==4.7.0.68  
+Pillow==10.3.0  
+opencv-python==4.9.0.80
 python-dotenv==0.21.0  
 
 # Should be included in standard python3 library and don't require pip
