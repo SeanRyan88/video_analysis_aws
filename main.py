@@ -115,7 +115,7 @@ def process_video_file(s3_bucket: str, s3_key: str):
     except Exception as e:
         print(f"Error processing/uploading results for {s3_key}: {e}")
     finally:
-        
+
         # Clean up: Delete the local video file and any generated GIFs
         cleanup_files([local_filename, results_text, results_gif])
 
@@ -161,40 +161,38 @@ def upload_results(bucket_name: str, base_key: str, results_text: str, gif1: str
             print(f"Error uploading video: {e}")
     print(f"Uploaded {object_name + '_results.txt'} sucessfully.......")
 
-def start():
-    load_dotenv()
 
-    # Access environment variables
-    S3_BUCKET_NAME = os.getenv('AWS_S3_BUCKET_NAME')
-    SQS_QUEUE_URL = os.getenv('AWS_SQS_QUEUE_URL')
+load_dotenv()
+
+# Access environment variables
+S3_BUCKET_NAME = os.getenv('AWS_S3_BUCKET_NAME')
+SQS_QUEUE_URL = os.getenv('AWS_SQS_QUEUE_URL')
 
 
-    if __name__ == '__main__':
-        # The URL of the SQS queue from which messages are received
-        # Create SQS client
-        sqs = boto3.client('sqs', region_name='us-east-1')
+if __name__ == '__main__':
+    # The URL of the SQS queue from which messages are received
+    # Create SQS client
+    sqs = boto3.client('sqs', region_name='us-east-1')
 
-        # Specify your queue URL
-        sqs_queue_url = SQS_QUEUE_URL
+    # Specify your queue URL
+    sqs_queue_url = SQS_QUEUE_URL
 
-        # Continuously poll the queue for new messages
-        while True:
-            try:
-                # Long polling for messages from the SQS queue to reduce the number of empty responses and lower costs
-                print("Polling SQS.......")
-                response = sqs.receive_message(
-                    QueueUrl=sqs_queue_url,
-                    MaxNumberOfMessages=10,  # Retrieve up to 10 messages in one request
-                    WaitTimeSeconds=20       # Wait up to 20 seconds for a message if the queue is initially empty
-                )
+    # Continuously poll the queue for new messages
+    while True:
+        try:
+            # Long polling for messages from the SQS queue to reduce the number of empty responses and lower costs
+            print("Polling SQS.......")
+            response = sqs.receive_message(
+                QueueUrl=sqs_queue_url,
+                MaxNumberOfMessages=10,  # Retrieve up to 10 messages in one request
+                WaitTimeSeconds=20       # Wait up to 20 seconds for a message if the queue is initially empty
+            )
 
-                # Check if there are any new messages
-                messages = response.get('Messages', [])
-                if messages:
-                    # Process each message using the process_messages function
-                    process_messages(messages, sqs)
-            except Exception as e:
-                print(f"Error polling SQS: {e}")
-                time.sleep(10)  # Wait a bit before retrying to avoid flooding logs with error messages
-
-start()
+            # Check if there are any new messages
+            messages = response.get('Messages', [])
+            if messages:
+                # Process each message using the process_messages function
+                process_messages(messages, sqs)
+        except Exception as e:
+            print(f"Error polling SQS: {e}")
+            time.sleep(10)  # Wait a bit before retrying to avoid flooding logs with error messages
