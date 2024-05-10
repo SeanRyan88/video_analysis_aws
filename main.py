@@ -6,12 +6,15 @@ import boto3
 # Installed via requirements.txt
 from botocore.exceptions import ClientError
 import numpy as np
-import opencv-python
-import mediapipe
+
+
 import time
 from typing import List, Tuple
 from urllib.parse import unquote_plus
 from dotenv import load_dotenv
+
+import cv2
+import mediapipe
 
 # Local items to include
 import vp_gifCreater
