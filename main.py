@@ -72,7 +72,7 @@ def process_video_file(s3_bucket: str, s3_key: str):
     print("File name = ", local_filename)
     print("S3 Bucket name = ", s3_bucket)
     print("S3 Key  = ", s3_key)
-    
+
     try:
         s3 = boto3.client('s3', region_name='us-east-1')
         s3.download_file(s3_bucket, s3_key, local_filename)
@@ -121,7 +121,7 @@ def process_video_file(s3_bucket: str, s3_key: str):
     finally:
 
         # Clean up: Delete the local video file and any generated GIFs
-        cleanup_files([local_filename, results_text, results_gif])
+        cleanup_files([local_filename, results_gif])
 
 def cleanup_files(files):
     """ Removes specified files from the filesystem if they exist. """
