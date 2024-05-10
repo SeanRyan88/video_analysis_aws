@@ -176,4 +176,4 @@ def start():
                 print(f"Error polling SQS: {e}")
                 time.sleep(10)  # Wait a bit before retrying to avoid flooding logs with error messages
 
-print("Successful")
+start()
