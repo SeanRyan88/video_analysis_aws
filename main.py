@@ -121,7 +121,7 @@ def process_video_file(s3_bucket: str, s3_key: str):
     finally:
 
         # Clean up: Delete the local video file and any generated GIFs
-        cleanup_files([local_filename, results_gif])
+        cleanup_files([local_filename]) #, results_gif])
 
 def cleanup_files(files):
     """ Removes specified files from the filesystem if they exist. """
