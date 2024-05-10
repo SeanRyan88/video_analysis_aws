@@ -117,7 +117,7 @@ def AnalysePose(video_path):
                 wrist = (landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].x * image.shape[1],
                          landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y * image.shape[0])
                 
-                angle = calculate_angle(shoulder, wrist, elbow)
+                angle = video_processing_python_files.vp_calculateAngle(shoulder, wrist, elbow)
                 # print(image.shape)
                 # print("Angle = ", angle)
                 # print("Shoulder = ",shoulder )
