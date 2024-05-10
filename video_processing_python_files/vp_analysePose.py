@@ -7,6 +7,7 @@ import video_processing_python_files.vp_calculateAngle
 # Identify the first repition 
 # Is done by identifying when the wrist is first identified above the shoulders
 def IdentifyFirstRep(AnalysisArray):
+    print("Identify First Rep")
     for x in range(0,len(AnalysisArray)):
         wrist_y = AnalysisArray[x][4][1]
         shoulder_y = AnalysisArray[x][2][1]
@@ -86,14 +87,18 @@ def IdentifyMinofRep(AnalysisArray):
 
 
 def AnalysePose(video_path):
+    print("Start Analysing Analyse Pose")
     mp_drawing = mp.solutions.drawing_utils
     mp_pose = mp.solutions.pose
+
+    print("Initialise MP")
 
     AnalysisArray = []
 
     cap = cv2.VideoCapture(video_path)
     
     with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
+        print("Run MP")
         while cap.isOpened():
             ret, frame = cap.read()
             if not ret:
@@ -106,6 +111,7 @@ def AnalysePose(video_path):
             image.flags.writeable = True
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
+            
             try:
                 landmarks = results.pose_landmarks.landmark
                 shoulder = (landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x * image.shape[1],
