@@ -107,14 +107,14 @@ def AnalysePose(video_path):
 
             image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             image.flags.writeable = False
-            print("Process Image")
+            # print("Process Image")
 
             results = pose.process(image)
             image.flags.writeable = True
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
             
-            print("Identify Landmarks")
+            # print("Identify Landmarks")
             try:
                 landmarks = results.pose_landmarks.landmark
                 shoulder = (landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x * image.shape[1],
@@ -124,7 +124,7 @@ def AnalysePose(video_path):
                 wrist = (landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].x * image.shape[1],
                          landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y * image.shape[0])
                 
-                print("Calculate Angles")
+                # print("Calculate Angles")
                 angle = video_processing_python_files.vp_calculateAngle(shoulder, wrist, elbow)
                 # print(image.shape)
                 # print("Angle = ", angle)
@@ -150,7 +150,7 @@ def AnalysePose(video_path):
                 pass
 
 
-            print("Draw on image")
+            # print("Draw on image")
             mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
                                       mp_drawing.DrawingSpec(color=(245,117,66), thickness=2, circle_radius=2),
                                       mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2))
@@ -163,6 +163,8 @@ def AnalysePose(video_path):
 
         cap.release()
         cv2.destroyAllWindows()
+
+        print("Finish Analysis")
 
         return AnalysisArray
 

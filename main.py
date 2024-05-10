@@ -92,6 +92,7 @@ def process_video_file(s3_bucket: str, s3_key: str):
         # TEMP TESTING
         AnalysisArray = video_processing_python_files.vp_analysePose.AnalysePose(local_filename)
 
+        print("Analysis Returned: ", local_filename)
         # Save 3 images
         # SaveImage(AnalysisArray[0], filename="image_1.jpg")
         # SaveImage(AnalysisArray[1], filename="image_2.jpg")
@@ -115,6 +116,7 @@ def process_video_file(s3_bucket: str, s3_key: str):
         results_text = "You're doing Great!"
 
         # Upload results back to another S3 bucket
+        print("Upload Results")
         upload_results(S3_BUCKET_NAME, s3_key, results_gif, results_text)
     except Exception as e:
         print(f"Error processing/uploading results for {s3_key}: {e}")
@@ -133,7 +135,7 @@ def cleanup_files(files):
             except Exception as e:
                 print(f"Failed to delete {file_path}: {e}")       
 
-def upload_results(bucket_name: str, base_key: str, results_text: str, gif1: str, gif2: str):
+def upload_results(bucket_name: str, base_key: str, results_text: str, gif1: str):
     """
     Uploads processing results including a text file and two GIFs to an S3 bucket.
 
@@ -159,7 +161,7 @@ def upload_results(bucket_name: str, base_key: str, results_text: str, gif1: str
         # Write text results
         s3.put_object(Bucket=bucket_name, Key=object_name + '_results.txt', Body=results_text)
         # Write gif results
-        #s3.upload_file(gif1, bucket_name, result_prefix + '_1.gif')
+        s3.upload_file(gif1, bucket_name, result_prefix + '_1.gif')
         #3.upload_file(gif2, bucket_name, result_prefix + '_2.gif')
     except Exception as e:
             print(f"Error uploading video: {e}")
