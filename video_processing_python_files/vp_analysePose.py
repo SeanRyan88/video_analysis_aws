@@ -1,4 +1,5 @@
 import mediapipe as mp
+import cv2
 
 # Identify the first repition 
 # Is done by identifying when the wrist is first identified above the shoulders

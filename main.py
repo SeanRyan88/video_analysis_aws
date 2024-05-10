@@ -16,7 +16,7 @@ from dotenv import load_dotenv
 import cv2
 import mediapipe as mp
 
-# Local items to include
+# Local modules to be include
 import video_processing_python_files.vp_gifCreater
 import video_processing_python_files.vp_calculateAngle
 import video_processing_python_files.vp_analysePose 
