@@ -96,13 +96,19 @@ def process_video_file(s3_bucket: str, s3_key: str):
         # Combine Images
         images = [AnalysisArray[0], AnalysisArray[1], AnalysisArray[2]]
 
+        # Error processing/uploading results for Test Video4.mp4: name 'mp' is not defined
+        # Error polling SQS: name 'results_text' is not defined
+
 
         # Converts Images into gif
         # create_gif(image_paths, output_path, duration = 500)
-        results_gif = vp_gifCreater.create_gif(images)
+        results_gif = video_processing_python_files.vp_gifCreater.create_gif(images)
         
         #results_text, gif1, gif2 = 'dummy results text', '/tmp/dummy1.gif', '/tmp/dummy2.gif'
         print(f"Processed {s3_key} successfully, results ready to upload.")
+
+        # To reference text file based on results:
+        results_text = "You're doing Great!"
 
         # Upload results back to another S3 bucket
         upload_results(S3_BUCKET_NAME, s3_key, results_gif, results_text)
