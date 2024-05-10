@@ -1,3 +1,5 @@
+import mediapipe as mp
+
 # Identify the first repition 
 # Is done by identifying when the wrist is first identified above the shoulders
 def IdentifyFirstRep(AnalysisArray):
