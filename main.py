@@ -69,6 +69,10 @@ def process_video_file(s3_bucket: str, s3_key: str):
     gif1 = gif2 = None  # Initialize to ensure scope beyond the try block
 
     print(f"Processing {s3_key}.......")
+    print("File name = ", local_filename)
+    print("S3 Bucket name = ", s3_bucket)
+    print("S3 Key  = ", s3_key)
+    
     try:
         s3 = boto3.client('s3', region_name='us-east-1')
         s3.download_file(s3_bucket, s3_key, local_filename)
