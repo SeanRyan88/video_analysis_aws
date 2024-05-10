@@ -19,7 +19,7 @@ import mediapipe
 # Local items to include
 import vp_gifCreater
 import vp_calculateAngle
-import vp_analysePose
+import vp_analysePose 
 import vp_runAnalysis
 
 
@@ -73,14 +73,29 @@ def process_video_file(s3_bucket: str, s3_key: str):
         s3 = boto3.client('s3', region_name='us-east-1')
         s3.download_file(s3_bucket, s3_key, local_filename)
         print(f"Downloaded {s3_key} to {local_filename}")
+        
     except Exception as e:
         print(f"Error downloading video: {e}")
         return
 
     try:
         # Placeholder for actual video processing module
+        # TEMP TURN OFF
+        # results_text, images = vp_runAnalysis.process_video(local_filename)
 
-        results_text, images = vp_runAnalysis.process_video(local_filename)
+        print("Local File Name = ", local_filename)
+        
+        # TEMP TESTING
+        AnalysisArray = AnalysePose(local_filename)
+
+        # Save 3 images
+        SaveImage(AnalysisArray[0], filename="image_1.jpg")
+        SaveImage(AnalysisArray[1], filename="image_2.jpg")
+        SaveImage(AnalysisArray[2], filename="image_3.jpg")
+
+        # Combine Images
+        images = [AnalysisArray[0], AnalysisArray[1], AnalysisArray[2]]
+
 
         # Converts Images into gif
         # create_gif(image_paths, output_path, duration = 500)
