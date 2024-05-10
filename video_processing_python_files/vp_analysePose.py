@@ -107,11 +107,14 @@ def AnalysePose(video_path):
 
             image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             image.flags.writeable = False
+            print("Process Image")
+
             results = pose.process(image)
             image.flags.writeable = True
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
             
+            print("Identify Landmarks")
             try:
                 landmarks = results.pose_landmarks.landmark
                 shoulder = (landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x * image.shape[1],
@@ -121,6 +124,7 @@ def AnalysePose(video_path):
                 wrist = (landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].x * image.shape[1],
                          landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y * image.shape[0])
                 
+                print("Calculate Angles")
                 angle = video_processing_python_files.vp_calculateAngle(shoulder, wrist, elbow)
                 # print(image.shape)
                 # print("Angle = ", angle)
@@ -145,11 +149,13 @@ def AnalysePose(video_path):
                 print(e)
                 pass
 
+
+            print("Draw on image")
             mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
                                       mp_drawing.DrawingSpec(color=(245,117,66), thickness=2, circle_radius=2),
                                       mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2))
 
-            cv2.imshow('Mediapipe Feed', image)
+            # cv2.imshow('Mediapipe Feed', image)
             # time.sleep(1)  # Wait for 1 second between each frame
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
