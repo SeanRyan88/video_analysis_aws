@@ -1,3 +1,5 @@
+import numpy as np
+
 # # Version 2
 def calculate_angle(a, b, c):
     a = np.array(a)  # Shoulder

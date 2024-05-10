@@ -172,6 +172,10 @@ load_dotenv()
 S3_BUCKET_NAME = os.getenv('AWS_S3_BUCKET_NAME')
 SQS_QUEUE_URL = os.getenv('AWS_SQS_QUEUE_URL')
 
+# Initiate MediaPipe
+mp_drawing = mp.solutions.drawing_utils
+mp_pose = mp.solutions.pose
+
 
 if __name__ == '__main__':
     # The URL of the SQS queue from which messages are received

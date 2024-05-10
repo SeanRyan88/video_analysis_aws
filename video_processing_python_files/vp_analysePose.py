@@ -4,8 +4,6 @@ import cv2
 # Local modules to be include
 import video_processing_python_files.vp_calculateAngle
 
-
-
 # Identify the first repition 
 # Is done by identifying when the wrist is first identified above the shoulders
 def IdentifyFirstRep(AnalysisArray):
