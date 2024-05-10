@@ -17,10 +17,10 @@ import cv2
 import mediapipe
 
 # Local items to include
-import vp_gifCreater
-import vp_calculateAngle
-import vp_analysePose 
-import vp_runAnalysis
+import video_processing_python_files.vp_gifCreater
+import video_processing_python_files.vp_calculateAngle
+import video_processing_python_files.vp_analysePose 
+import video_processing_python_files.vp_runAnalysis
 
 
 def process_messages(messages: List[dict], sqs_client: boto3.client):
@@ -84,14 +84,14 @@ def process_video_file(s3_bucket: str, s3_key: str):
         # results_text, images = vp_runAnalysis.process_video(local_filename)
 
         print("Local File Name = ", local_filename)
-        
+
         # TEMP TESTING
         AnalysisArray = AnalysePose(local_filename)
 
         # Save 3 images
-        SaveImage(AnalysisArray[0], filename="image_1.jpg")
-        SaveImage(AnalysisArray[1], filename="image_2.jpg")
-        SaveImage(AnalysisArray[2], filename="image_3.jpg")
+        # SaveImage(AnalysisArray[0], filename="image_1.jpg")
+        # SaveImage(AnalysisArray[1], filename="image_2.jpg")
+        # SaveImage(AnalysisArray[2], filename="image_3.jpg")
 
         # Combine Images
         images = [AnalysisArray[0], AnalysisArray[1], AnalysisArray[2]]
