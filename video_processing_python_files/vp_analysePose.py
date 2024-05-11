@@ -2,7 +2,7 @@ import mediapipe as mp
 import cv2
 
 # Local modules to be include
-import video_processing_python_files.vp_calculateAngle
+import vp_calculateAngle
 
 # Identify the first repition 
 # Is done by identifying when the wrist is first identified above the shoulders
@@ -136,7 +136,7 @@ def AnalysePose(video_path):
                          landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y * image.shape[0])
                 
                 # print("Calculate Angles")
-                angle = video_processing_python_files.vp_calculateAngle(shoulder, wrist, elbow)
+                angle = vp_calculateAngle(shoulder, wrist, elbow)
                 # print(image.shape)
                 # print("Angle = ", angle)
                 # print("Shoulder = ",shoulder )
