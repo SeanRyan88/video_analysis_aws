@@ -97,9 +97,9 @@ def process_video_file(s3_bucket: str, s3_key: str):
 
         print("Analysis Returned: ", local_filename)
         # Save 3 images
-        video_processing_python_files.vp_analysePose.SaveImage(AnalysisArray[0], filename="image_1.jpg")
-        video_processing_python_files.vp_analysePose.SaveImage(AnalysisArray[1], filename="image_2.jpg")
-        video_processing_python_files.vp_analysePose.SaveImage(AnalysisArray[2], filename="image_3.jpg")
+        video_processing_python_files.vp_saveImages.SaveImage(AnalysisArray[0], filename="image_1.jpg")
+        video_processing_python_files.vp_saveImages.SaveImage(AnalysisArray[1], filename="image_2.jpg")
+        video_processing_python_files.vp_saveImages.SaveImage(AnalysisArray[2], filename="image_3.jpg")
 
         # Combine Images
         # images = [AnalysisArray[0], AnalysisArray[1], AnalysisArray[2]]
