@@ -96,8 +96,15 @@ def process_video_file(s3_bucket: str, s3_key: str):
         AnalysisArray = video_processing_python_files.vp_analysePose.AnalysePose(local_filename)
         print("Analysis Returned")
         print(AnalysisArray[0])
-        # print("print(AnalysisArray[0].type ", AnalysisArray.type)
-        # print("print(AnalysisArray[0].type ", AnalysisArray[0].type)
+
+        # CREATE ANALYSIS REVIEW AND CREATE TEXT
+        # Expected format[found != 0, top = x, bottom = x, speed = x]
+        
+        results_text = video_processing_python_files.vp_results_text.textResults([[1][2][1][2]])
+        
+        
+        ############################
+
 
         print("Analysis Returned: ", local_filename)
         # Save 3 images
@@ -128,7 +135,7 @@ def process_video_file(s3_bucket: str, s3_key: str):
         
         
         # To reference text file based on results:
-        results_text = "You're doing great"
+        # results_text = "You're doing great"
         # TO BE UPDATED
 
         # Upload results back to another S3 bucket
