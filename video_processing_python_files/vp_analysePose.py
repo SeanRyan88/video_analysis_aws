@@ -143,7 +143,7 @@ def AnalysePose(video_path):
             # print("Identify Landmarks")
             try:
                 #print("Flag 7")
-                print("Do Analysis")
+                
                 landmarks = results.pose_landmarks.landmark
                 shoulder = (landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x * image.shape[1],
                             landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y * image.shape[0])
@@ -171,7 +171,7 @@ def AnalysePose(video_path):
                             [500,500],
                             cv2.FONT_HERSHEY_SIMPLEX, 2, (0,0,0), 3, cv2.LINE_AA)
                 
-                print("Append")
+                
                 AnalysisArray.append([image, angle, shoulder, elbow, wrist])
                 #print("Flag 8")
 
@@ -185,7 +185,7 @@ def AnalysePose(video_path):
 
 
             # print("Draw on image")
-            print("Draw")
+            
             mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
                                       mp_drawing.DrawingSpec(color=(245,117,66), thickness=2, circle_radius=2),
                                       mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2))
@@ -200,13 +200,13 @@ def AnalysePose(video_path):
         cv2.destroyAllWindows()
 
         print("Finish Analysis")
-        print(AnalysisArray)
+        print(AnalysisArray[0])
 
         return AnalysisArray
 
 
 
-    UpdatedArray = AnalysisArray
+    # UpdatedArray = AnalysisArray
 
 
 
