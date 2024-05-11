@@ -103,30 +103,30 @@ def AnalysePose(video_path):
     
     with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
         print("Run MP")
-        print("Failure 1")
+        ##print("Flag 1")
         while cap.isOpened():
-            print("Failure 2")
+            #print("Flag 2")
             ret, frame = cap.read()
             if not ret:
                 print("Failed to grab frame or end of video.")
-                print("Failure 3")
+                #print("Flag 3")
                 break
 
-            print("Failure 4")
+            #print("Flag 4")
             image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             image.flags.writeable = False
             # print("Process Image")
 
-            print("Failure 5")
+            #print("Flag 5")
             results = pose.process(image)
             image.flags.writeable = True
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-            print("Failure 6")
+            #print("Flag 6")
 
             
             # print("Identify Landmarks")
             try:
-                print("Failure 7")
+                #print("Flag 7")
                 landmarks = results.pose_landmarks.landmark
                 shoulder = (landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x * image.shape[1],
                             landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y * image.shape[0])
@@ -155,15 +155,15 @@ def AnalysePose(video_path):
                             cv2.FONT_HERSHEY_SIMPLEX, 2, (0,0,0), 3, cv2.LINE_AA)
                 
                 AnalysisArray.append([image, angle, shoulder, elbow, wrist])
-                print("Failure 8")
+                #print("Flag 8")
 
             
             except Exception as e:
-                print("Failure 9")
+                # #print("Flag 9")
                 print(e)
                 pass
 
-            print("Failure 10")
+            # ##print("Flag 10")
 
 
             # print("Draw on image")
