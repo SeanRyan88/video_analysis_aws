@@ -19,7 +19,7 @@ import numpy as np
 
 
 
-def SaveImage(image, filename, directory="/"):
+def SaveImage(image, filename, directory="/home/ec2-user/video_analysis_aws/images/"):
     print("Run Process SaveImage")
     
     # if isinstance(image, np.ndarray):

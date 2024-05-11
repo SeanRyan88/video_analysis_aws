@@ -107,7 +107,8 @@ def process_video_file(s3_bucket: str, s3_key: str):
 
         # Combine Images
         # images = [AnalysisArray[0], AnalysisArray[1], AnalysisArray[2]]
-        images = ["image_1.jpg", "image_2.jpg", "image_3.jpg"]
+        dir = "/home/ec2-user/video_analysis_aws/images/"
+        images = [dir+"image_1.jpg", dir+"image_2.jpg", dir+"image_3.jpg"]
 
         # Error processing/uploading results for Test Video4.mp4: name 'mp' is not defined
         # Error polling SQS: name 'results_text' is not defined
@@ -115,7 +116,7 @@ def process_video_file(s3_bucket: str, s3_key: str):
 
         # Converts Images into gif
         # create_gif(image_paths, output_path, duration = 500)
-        results_gif = video_processing_python_files.vp_gifCreater.create_gif(images, "Output_Test.gif")
+        results_gif = video_processing_python_files.vp_gifCreater.create_gif(images, "/home/ec2-user/video_analysis_aws/images/Output_Test.gif")
         
         #results_text, gif1, gif2 = 'dummy results text', '/tmp/dummy1.gif', '/tmp/dummy2.gif'
         print(f"Processed {s3_key} successfully, results ready to upload.")
