@@ -38,17 +38,19 @@ import os
 def create_gif(images, output_path, duration=500):
     print("Run Process create_gif")
     pil_images = []
+    for image in images:
+        pil_images.append(images)
     
     # Convert each OpenCV BGR image to a PIL Image
-    for image in images:
-        try:
-            # Convert from OpenCV BGR to RGB format
-            image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-            pil_image = Image.fromarray(image_rgb)
-            pil_images.append(pil_image)
-        except Exception as e:
-            print(f"Failed to convert an image: {e}")
-            return None  # Early return on failure
+    # for image in images:
+    #     try:
+    #         # Convert from OpenCV BGR to RGB format
+    #         image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    #         pil_image = Image.fromarray(image_rgb)
+    #         pil_images.append(pil_image)
+    #     except Exception as e:
+    #         print(f"Failed to convert an image: {e}")
+    #         return None  # Early return on failure
     
     # Save the images as a GIF
     try:
