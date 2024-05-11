@@ -7,6 +7,7 @@ import video_processing_python_files.vp_calculateAngle
 # Identify the first repition 
 # Is done by identifying when the wrist is first identified above the shoulders
 def IdentifyFirstRep(AnalysisArray):
+    print("Run Process identifyFirstRep")
     print("Identify First Rep")
     for x in range(0,len(AnalysisArray)):
         wrist_y = AnalysisArray[x][4][1]
@@ -18,6 +19,7 @@ def IdentifyFirstRep(AnalysisArray):
 # Identify the max height of the reptition
 # Is done by identifying when the wrist is at the highest point
 def IdentifyMaxofRep(AnalysisArray):
+    print("Run Process IdentifyMaxofRep")
     print("Start IdentifyMaxofRep")
     max_height = float('inf')  
     max_frame = None
@@ -53,6 +55,7 @@ def IdentifyMaxofRep(AnalysisArray):
 # Identify the max height of the reptition
 # Is done by identifying when the wrist is at the highest point
 def IdentifyMinofRep(AnalysisArray):
+    print("Run Process IdentifyMinofRep")
     print("Start IdentifyMinofRep")
     max_height = float('inf')  
     max_frame = None
@@ -87,6 +90,7 @@ def IdentifyMinofRep(AnalysisArray):
 
 
 def AnalysePose(video_path):
+    print("Run Process AnalysePose")
     print("Start Analysing Analyse Pose")
     mp_drawing = mp.solutions.drawing_utils
     mp_pose = mp.solutions.pose

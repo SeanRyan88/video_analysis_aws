@@ -24,6 +24,7 @@ import os
 ######################################################
 # S3 Writing - return images
 def create_gif(inputImagesPath, duration = 500):
+    print("Run Process create_gif")
     images = []
     for path in inputImagesPath:
         images.append(Image.open(path))

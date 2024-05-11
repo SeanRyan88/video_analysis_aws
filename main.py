@@ -24,6 +24,7 @@ import video_processing_python_files.vp_runAnalysis
 
 
 def process_messages(messages: List[dict], sqs_client: boto3.client):
+    print("Run Process Process_messages")
     """
     Processes messages retrieved from an SQS queue, extracting S3 bucket and key details,
     downloading and processing the corresponding video files, and then deleting the messages
@@ -53,6 +54,7 @@ def process_messages(messages: List[dict], sqs_client: boto3.client):
         # )
 
 def process_video_file(s3_bucket: str, s3_key: str):
+    print("Run Process process_video_files")
     """
     Retrieves a video file from an S3 bucket, processes the video, uploads the results
     (a text file and potentially two GIFs) to another S3 bucket, and then cleans up by deleting
@@ -126,6 +128,7 @@ def process_video_file(s3_bucket: str, s3_key: str):
         cleanup_files([local_filename]) #, results_gif])
 
 def cleanup_files(files):
+    print("Run Process cleanup_files")
     """ Removes specified files from the filesystem if they exist. """
     for file_path in files:
         if file_path and os.path.exists(file_path):
@@ -136,6 +139,7 @@ def cleanup_files(files):
                 print(f"Failed to delete {file_path}: {e}")       
 
 def upload_results(bucket_name: str, base_key: str, results_text: str, gif1: str):
+    print("Run Process upload_results")
     """
     Uploads processing results including a text file and two GIFs to an S3 bucket.
 
@@ -177,6 +181,7 @@ SQS_QUEUE_URL = os.getenv('AWS_SQS_QUEUE_URL')
 
 
 if __name__ == '__main__':
+    print("Run main")
     # The URL of the SQS queue from which messages are received
     # Create SQS client
     sqs = boto3.client('sqs', region_name='us-east-1')

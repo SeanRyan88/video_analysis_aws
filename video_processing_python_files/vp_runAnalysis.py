@@ -1,4 +1,5 @@
 def process_video(videoPath):
+    print("Run Process process_video")
     # AnalysisArray[image, angle, shoulder[x,y], elbow[x,y], wrist[x,y]]
     # Wrist Y = AnalysisArray[4[1]
     # print(AnalysisArray)
