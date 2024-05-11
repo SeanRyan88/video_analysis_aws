@@ -25,7 +25,7 @@ def SaveImage(image, filename, directory="/"):
     # if isinstance(image, np.ndarray):
     try:
         save_path = os.path.join(directory, filename)
-        cv2.imwrite(save_path, image)
+        cv2.imwrite(save_path, image[0])
         print(f"Image saved at {save_path}")
     except:
         print("Provided image is not a valid numpy array.")
