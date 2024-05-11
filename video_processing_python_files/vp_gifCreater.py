@@ -35,30 +35,44 @@ import os
 
 ######################################################
 # Create gif based on images parsed
-
 def create_gif(images, output_path, duration=500):
+    print("Run Process create_gif")
     pil_images = []
     
     # Convert each OpenCV BGR image to a PIL Image
     for image in images:
-        # Convert from OpenCV BGR to RGB format
-        image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        pil_image = Image.fromarray(image_rgb)
-        pil_images.append(pil_image)
+        try:
+            # Convert from OpenCV BGR to RGB format
+            image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+            pil_image = Image.fromarray(image_rgb)
+            pil_images.append(pil_image)
+        except Exception as e:
+            print(f"Failed to convert an image: {e}")
+            return None  # Early return on failure
     
     # Save the images as a GIF
-    if pil_images:
-        pil_images[0].save(output_path, save_all=True, append_images=pil_images[1:], optimize=False, duration=duration, loop=0)
-        print(f"GIF saved successfully at {output_path}")
-    else:
-        print("No images were processed. GIF not created.")
-
+    try:
+        if pil_images:
+            pil_images[0].save(output_path, save_all=True, append_images=pil_images[1:], optimize=False, duration=duration, loop=0)
+            print(f"GIF saved successfully at {output_path}")
+        else:
+            print("No images were processed. GIF not created.")
+    except Exception as e:
+        print(f"Failed to save GIF: {e}")
+        return None
+    
     return output_path
 
 # Example usage:
 # Assuming `images` is a list of three OpenCV images
 # images = [cv2.imread('frame1.jpg'), cv2.imread('frame2.jpg'), cv2.imread('frame3.jpg')]
-# create_gif(images, 'output.gif')
+# output_path = 'path/to/output.gif'
+# result = create_gif(images, output_path)
+# if result:
+#     print(f"GIF was created successfully at {result}")
+# else:
+#     print("An error occurred while creating the GIF.")
+
 
 
 ######################################################
