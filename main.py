@@ -118,11 +118,14 @@ def process_video_file(s3_bucket: str, s3_key: str):
         # create_gif(image_paths, output_path, duration = 500)
         results_gif = video_processing_python_files.vp_gifCreater.create_gif(images, "/home/ec2-user/video_analysis_aws/Output_Test.gif")
         
+        results_gif = "/home/ec2-user/video_analysis_aws/Output_Test.gif"
+
         #results_text, gif1, gif2 = 'dummy results text', '/tmp/dummy1.gif', '/tmp/dummy2.gif'
         print(f"Processed {s3_key} successfully, results ready to upload.")
 
         # To reference text file based on results:
         results_text = "You're doing Great!"
+        # TO BE UPDATED
 
         # Upload results back to another S3 bucket
         print("Upload Results")
