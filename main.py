@@ -184,8 +184,9 @@ def upload_results(bucket_name: str, base_key: str, results_text: str, gif1: str
         # Write text results
         s3.put_object(Bucket=bucket_name, Key=object_name + '_results.txt', Body=results_text)
         # Write gif results
-        s3.upload_file(gif1, bucket_name, result_prefix + '_1.gif')
-        #3.upload_file(gif2, bucket_name, result_prefix + '_2.gif')
+        s3.upload_file(gif1, bucket_name, object_name + '_1.gif')
+
+        
     except Exception as e:
             print(f"Error uploading video: {e}")
     print(f"Uploaded {object_name + '_results.txt'} sucessfully.......")
