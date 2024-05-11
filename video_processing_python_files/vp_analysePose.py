@@ -197,6 +197,8 @@ def AnalysePose(video_path):
         cv2.destroyAllWindows()
 
         print("Finish Analysis")
+        print(AnalysisArray.type)
+        print("Type confirmed")
 
         return AnalysisArray
 
