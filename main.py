@@ -123,13 +123,18 @@ def process_video_file(s3_bucket: str, s3_key: str):
         #results_text, gif1, gif2 = 'dummy results text', '/tmp/dummy1.gif', '/tmp/dummy2.gif'
         print(f"Processed {s3_key} successfully, results ready to upload.")
 
+        #Write results to text file
+
+        
+        
         # To reference text file based on results:
-        results_text = "You're doing Great!"
+        results_text = "You're doing great"
         # TO BE UPDATED
 
         # Upload results back to another S3 bucket
         print("Upload Results")
         upload_results(S3_BUCKET_NAME, s3_key, results_gif, results_text)
+
     except Exception as e:
         print(f"Error processing/uploading results for {s3_key}: {e}")
     finally:
@@ -158,13 +163,16 @@ def upload_results(bucket_name: str, base_key: str, results_text: str, gif1: str
     base_key (str): The base S3 key of the original video file; used to determine result file names.
     results_text (str): The contents of the result text file.
     gif1 (str): The file path of the first GIF result.
-    gif2 (str): The file path of the second GIF result.
 
     Returns:
     None
     """
     
     print(f"Uploading {base_key}.......")
+    print("bucket name " + bucket_name)
+    print("base key " + base_key)
+    print("results text " + results_text)
+    print("gif1 " + gif1)
 
     s3 = boto3.client('s3', region_name='us-east-1')
     result_prefix = base_key.replace('.mp4', '')
