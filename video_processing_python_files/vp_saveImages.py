@@ -20,6 +20,7 @@ import numpy as np
 
 
 def SaveImage(image, filename, directory="/"):
+    print("Run Process SaveImage")
     if isinstance(image, np.ndarray):
         save_path = os.path.join(directory, filename)
         cv2.imwrite(save_path, image)
