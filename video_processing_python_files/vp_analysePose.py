@@ -100,15 +100,28 @@ def AnalysePose(video_path):
     AnalysisArray = []
 
     cap = cv2.VideoCapture(video_path)
+
+    #TESTING TO CALCULATE FRAMES IN VIDEO
+    # Assuming 'cap' and 'video_path' are already defined as shown in your screenshot
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    video_name = os.path.basename(video_path)
+    frame_number = 0
     
     with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
         print("Run MP")
         ##print("Flag 1")
         while cap.isOpened():
+
+
+            #TESTING
+            frame_number += 1
+            print(f"{video_name} - Frame {frame_number} / {total_frames}")
+
+
             #print("Flag 2")
             ret, frame = cap.read()
             if not ret:
-                print("Failed to grab frame or end of video.")
+                print("End of video.")
                 #print("Flag 3")
                 break
 

@@ -2,7 +2,7 @@ import numpy as np
 
 # # Version 2
 def calculate_angle(a, b, c):
-    print("Run Process calculate_angle")
+    # print("Run Process calculate_angle")
     a = np.array(a)  # Shoulder
     b = np.array(b)  # Elbow
     c = np.array(c)  # Wrist
