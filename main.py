@@ -107,8 +107,8 @@ def process_video_file(s3_bucket: str, s3_key: str):
 
         # Combine Images
         # images = [AnalysisArray[0], AnalysisArray[1], AnalysisArray[2]]
-        dir = "/home/ec2-user/video_analysis_aws/images/"
-        images = [dir+"image_1.jpg", dir+"image_2.jpg", dir+"image_3.jpg"]
+        dir = "/home/ec2-user/video_analysis_aws"
+        images = [dir+"/images/image_1.jpg", dir+"/images/image_2.jpg", dir+"/images/image_3.jpg"]
 
         # Error processing/uploading results for Test Video4.mp4: name 'mp' is not defined
         # Error polling SQS: name 'results_text' is not defined
