@@ -133,7 +133,7 @@ def process_video_file(s3_bucket: str, s3_key: str):
 
         # Upload results back to another S3 bucket
         print("Upload Results")
-        upload_results(S3_BUCKET_NAME, s3_key, results_gif, results_text)
+        upload_results(S3_BUCKET_NAME, s3_key, results_text, results_gif)
 
     except Exception as e:
         print(f"Error processing/uploading results for {s3_key}: {e}")
