@@ -1,7 +1,7 @@
 #Save Image
 import os
-import np
 import cv2
+import numpy as np
 
 # def SaveImage(image, filename="first_frame.jpg", directory="/"):
 #     print("Run Process SaveImage")
