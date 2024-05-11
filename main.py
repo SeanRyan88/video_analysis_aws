@@ -109,7 +109,7 @@ def process_video_file(s3_bucket: str, s3_key: str):
 
         # Converts Images into gif
         # create_gif(image_paths, output_path, duration = 500)
-        results_gif = video_processing_python_files.vp_gifCreater.create_gif(images)
+        results_gif = video_processing_python_files.vp_gifCreater.create_gif(images, "Output_Test.gif")
         
         #results_text, gif1, gif2 = 'dummy results text', '/tmp/dummy1.gif', '/tmp/dummy2.gif'
         print(f"Processed {s3_key} successfully, results ready to upload.")
