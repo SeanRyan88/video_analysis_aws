@@ -123,7 +123,7 @@ def AnalysePose(video_path):
             ret, frame = cap.read()
             
             #Cuts at frame > 200 for processing issues
-            if not ret or frame_number > 200:
+            if not ret or frame_number > 20:
                 print("End of video.")
                 #print("Flag 3")
                 break

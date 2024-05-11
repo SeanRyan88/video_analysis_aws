@@ -36,7 +36,7 @@ import os
 ######################################################
 # Create gif based on images parsed
 
-def create_gif_from_analysis(analysis_array, duration=500):
+def create_gif(analysis_array, duration=500):
     print("Run Process create_gif")
     pil_images = []
 
